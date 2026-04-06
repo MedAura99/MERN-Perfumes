@@ -14,7 +14,7 @@ const List = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/cards");
+        const res = await axios.get("https://mern-perfumes-production.up.railway.app/api/cards");
         setPerfumes(res.data);
       } catch (error) {
         console.log(error);
