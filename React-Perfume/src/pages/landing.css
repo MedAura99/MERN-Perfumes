@@ -1,0 +1,130 @@
+.landing-container {
+  height: 100vh;   /* full viewport height */
+  width: 100vw;    /* full viewport width */
+  background: linear-gradient(135deg, #5B7CFA, #9B7BFF);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  text-align: center;
+  color: white;
+  max-width: 90%;      /* prevents overflow on big screens */
+}
+
+.content h1 {
+  font-size: 48px;
+  letter-spacing: 2px;
+}
+
+.content p {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .content h1 {
+    font-size: 36px;
+  }
+
+  .content p {
+    font-size: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .content h1 {
+    font-size: 28px;
+  }
+
+  .content p {
+    font-size: 14px;
+  }
+}
+/* Brighter, fast, colored smoke */
+.landing-container::before,
+.landing-container::after {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background: radial-gradient(circle, rgba(91,124,250,0.25) 20%, rgba(155,123,255,0.15) 70%, transparent 90%);
+  animation: smokeMove 6s linear infinite;
+  pointer-events: none;
+  filter: blur(60px);
+}
+
+.landing-container::after {
+  animation-duration: 12s;
+  opacity: 0.7;
+  background: radial-gradient(circle, rgba(91,124,250,0.2) 25%, rgba(155,123,255,0.1) 75%, transparent 95%);
+}
+
+@keyframes smokeMove {
+  0% {
+    transform: translate(0,0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(250px,-180px) rotate(180deg) scale(1.5);
+  }
+  100% {
+    transform: translate(0,0) rotate(360deg) scale(1);
+  }
+}
+/* Main title slides up */
+.main-title {
+  font-size: 48px;
+  color: white;
+  transform: translateY(100px);
+  opacity: 0;
+  animation: slideUp 3s forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Tagline style */
+.tagline {
+  margin-top: 15px;
+  font-size: 22px;
+  color: white;
+  opacity: 1; /* visibility handled by React state */
+}
+
+
+/* === UPDATE: animated logo */
+.landing-logo {
+  position: absolute;
+  top: 50px;        /* start above main title */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: auto;
+  z-index: 10;
+  transition: all 2s ease-in-out;  /* smooth movement */
+}
+
+.landing-logo.move-to-header {
+  top: 70px;       /* header top */
+  left: 30px;      /* aligns with header padding */
+  width: 50px;     /* fits navbar logo */
+  transform: translateX(0);
+}
+.logo1 {
+  height: 200px;
+  width: 230px;
+}
+

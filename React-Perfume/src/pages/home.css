@@ -1,0 +1,45 @@
+/* Full viewport beautiful background */
+.home-container {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0e0e0, #c0c0c0); /* grey shaded gradient */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 100px; /* space for sticky header */
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+/* Optional subtle overlay / abstract shapes */
+.home-container::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 20%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+/* header tags */
+.brand {
+  background: linear-gradient(#ffa9a9,#b7dd71,#9babf3);
+  width: 100vh;
+  text-align: center;
+  height: 100px;
+  padding: 1%;
+  margin: 0px;
+  font-size: 50px;
+  border: 0px;
+  display: inline-block;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  color: #f822ff;
+
+}

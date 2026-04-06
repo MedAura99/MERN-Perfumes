@@ -1,0 +1,32 @@
+.content1 {
+    background-color: rgb(202, 211, 223);
+    position: relative;
+    width: 100%;
+}
+
+.Tag1 {
+    color: rgba(27, 59, 235, 0.671);
+    text-align: center;
+}
+.side-text {
+    position: relative;
+    left:750px;
+  background-color: transparent;
+  border: none;
+}
+
+.perf {
+    color: rgba(217, 29, 255, 0.938);
+    font-size: 20px;
+
+}
+.logo2 {
+      position: relative;
+      display: inline-block;
+      left: 370px;
+      bottom: 100px;
+  background-color: transparent;
+  border: none;
+  width: 170px;
+  height: 150px;
+}

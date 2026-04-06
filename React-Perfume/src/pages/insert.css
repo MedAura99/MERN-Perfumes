@@ -1,0 +1,19 @@
+.insert-page {
+  width: 300px;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.insert-page input {
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.insert-page button {
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+}
