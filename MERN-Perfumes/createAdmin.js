@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Admin = require("./models/Admin");
+const Admin = require("./models/admin");
 
 mongoose.connect("mongodb://127.0.0.1:27017/cardsDB");
 
