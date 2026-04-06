@@ -20,6 +20,6 @@ mongoose.connect(process.env.MONGOAUTH_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
