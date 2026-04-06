@@ -16,9 +16,10 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/cards", cardRoutes);
 
-mongoose.connect(process.env.MONGOAUTH_URL)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+mongoose.connect(process.env.MONGO_URL, {
+  serverSelectionTimeoutMS: 30000, // 30 seconds
+  bufferTimeoutMS: 30000
+})
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
