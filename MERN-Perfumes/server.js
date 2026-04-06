@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+const PORT = process.env.PORT || 5000;
 
 const authRoutes = require("./routes/authRoutes");
 const cardRoutes = require("./routes/cardRoutes");
@@ -20,5 +21,5 @@ mongoose.connect("mongodb://127.0.0.1:27017/cardsDB")
   .catch((err) => console.log(err));
 
 app.listen(5000, () => {
-  console.log("Server running on port 5000");
+  console.log(`Server running on port ${PORT}`);
 });
