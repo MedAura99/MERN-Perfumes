@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const Admin = require("./models/admin");
+require("dotenv").config();
 
-mongoose.connect("mongodb://127.0.0.1:27017/cardsDB");
+mongoose.connect(process.env.MONGO_URL);
 
 const createAdmin = async () => {
     await Admin.create({
