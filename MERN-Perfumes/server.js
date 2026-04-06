@@ -16,7 +16,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/cards", cardRoutes);
 
-mongoose.connect("mongodb://127.0.0.1:27017/cardsDB")
+mongoose.connect(process.env.MONGOAUTH_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
