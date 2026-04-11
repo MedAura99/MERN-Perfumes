@@ -9,7 +9,7 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const fetchCards = async () => {
-    const res = await axios.get("https://mern-perfumes-production.up.railway.app/api/cards");
+    const res = await axios.get("https://localhost:5000/api/cards/api/cards");
     setCards(res.data);
   };
 
@@ -22,7 +22,7 @@ const Auth = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this card?");
     if (!confirmDelete) return;
 
-    await axios.delete(`https://mern-perfumes-production.up.railway.app/api/cards/${id}`);
+    await axios.delete(`https://localhost:5000/api/cards/${id}`);
     fetchCards();
   };
 

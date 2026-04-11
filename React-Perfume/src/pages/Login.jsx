@@ -11,7 +11,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://mern-perfumes-production.up.railway.app/api/auth/login",
+        "https://localhost:5000/api/auth/login",
         {
           username,
           password,
