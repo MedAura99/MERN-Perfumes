@@ -11,24 +11,24 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://localhost:5000/api/auth/login",
+        "https://mern-perfumes-production.up.railway.app/api/auth/login",
         {
-          username,
-          password,
+          username: username.trim(),
+          password: password.trim(),
         }
       );
 
-      // ✅ save admin info (NOT token)
+      console.log("LOGIN RESPONSE:", res.data);
+
+      // store admin
       localStorage.setItem("admin", JSON.stringify(res.data.admin));
 
       alert("Login Successful");
 
-      // redirect
       navigate("/admin");
-
     } catch (error) {
-      console.log(error.response?.data || error.message);
-      alert("Invalid login");
+      console.log("LOGIN ERROR:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Invalid login");
     }
   };
 
@@ -54,9 +54,7 @@ const Login = () => {
 
       <br /><br />
 
-      <button onClick={handleLogin}>
-        Login
-      </button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

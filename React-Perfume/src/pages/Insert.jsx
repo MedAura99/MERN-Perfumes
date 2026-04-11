@@ -19,7 +19,7 @@ const Insert = () => {
     const fetchSingleCard = async () => {
       if (id) {
         try {
-          const res = await axios.get("http://localhost:5000/api/cards");
+          const res = await axios.get("http://mern-perfumes-production.up.railway.app/api/cards");
 
           const item = res.data.find((c) => c._id === id);
 
@@ -52,7 +52,7 @@ const Insert = () => {
       if (id) {
         // UPDATE
         await axios.put(
-          `http://localhost:5000/api/cards/${id}`,
+          `http://mern-perfumes-production.up.railway.app/api/cards/${id}`,
           formData
         );
 
@@ -60,7 +60,7 @@ const Insert = () => {
       } else {
         // CREATE
         await axios.post(
-          "http://localhost:5000/api/cards",
+          "http://mern-perfumes-production.up.railway.app/api/cards",
           formData
         );
 

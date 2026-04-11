@@ -14,7 +14,7 @@ const Desc = () => {
     const fetchSingle = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/cards/${id}`
+          `https://mern-perfumes-production.up.railway.app/api/cards/${id}`
         );
         setItem(res.data);
       } catch (err) {
@@ -34,7 +34,7 @@ const Desc = () => {
       <div className="desc-container">
         <div className="desc-card">
           <img
-            src={`http://localhost:5000/uploads/${item.image}`}
+            src={`https://mern-perfumes-production.up.railway.app/uploads/${item.image}`}
             alt={item.name}
           />
 
