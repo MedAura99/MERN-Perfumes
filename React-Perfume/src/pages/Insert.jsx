@@ -14,20 +14,20 @@ const Insert = () => {
 
   const navigate = useNavigate();
 
-  // 🔥 GET SINGLE CARD FOR UPDATE
+  // GET SINGLE CARD
   useEffect(() => {
     const fetchSingleCard = async () => {
       if (id) {
         try {
-          const res = await axios.get("http://mern-perfumes-production.up.railway.app/api/cards");
+          const res = await axios.get(
+            `https://mern-perfumes-production.up.railway.app/api/cards/${id}`
+          );
 
-          const item = res.data.find((c) => c._id === id);
+          const item = res.data;
 
-          if (item) {
-            setName(item.name);
-            setPrice(item.price);
-            setDescription(item.description);
-          }
+          setName(item.name);
+          setPrice(item.price);
+          setDescription(item.description);
         } catch (err) {
           console.log("Error fetching card:", err);
         }
@@ -37,7 +37,7 @@ const Insert = () => {
     fetchSingleCard();
   }, [id]);
 
-  // 🔥 CREATE + UPDATE FUNCTION
+  // SAVE (CREATE / UPDATE)
   const saveCard = async () => {
     try {
       const formData = new FormData();
@@ -50,32 +50,27 @@ const Insert = () => {
       }
 
       if (id) {
-        // UPDATE
         await axios.put(
-          `http://mern-perfumes-production.up.railway.app/api/cards/${id}`,
+          `https://mern-perfumes-production.up.railway.app/api/cards/${id}`,
           formData
         );
 
         alert("Card Updated Successfully!");
       } else {
-        // CREATE
         await axios.post(
-          "http://mern-perfumes-production.up.railway.app/api/cards",
+          "https://mern-perfumes-production.up.railway.app/api/cards",
           formData
         );
 
         alert("Card Created Successfully!");
       }
 
-      // reset form
       setName("");
       setPrice("");
       setDescription("");
       setImage(null);
 
-      // redirect back
       navigate("/admin");
-
     } catch (err) {
       console.log(err);
       alert("Error saving card");
@@ -84,7 +79,6 @@ const Insert = () => {
 
   return (
     <div className="insert-page">
-
       <h1>{id ? "Update Card" : "Create Card"}</h1>
 
       <input
@@ -105,15 +99,9 @@ const Insert = () => {
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <input
-        type="file"
-        onChange={(e) => setImage(e.target.files[0])}
-      />
+      <input type="file" onChange={(e) => setImage(e.target.files[0])} />
 
-      <button onClick={saveCard}>
-        {id ? "Update" : "Create"}
-      </button>
-
+      <button onClick={saveCard}>{id ? "Update" : "Create"}</button>
     </div>
   );
 };

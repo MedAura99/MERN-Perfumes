@@ -9,6 +9,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    if (!username || !password) {
+      alert("Please fill all fields");
+      return;
+    }
+
     try {
       const res = await axios.post(
         "https://mern-perfumes-production.up.railway.app/api/auth/login",
@@ -20,7 +25,11 @@ const Login = () => {
 
       console.log("LOGIN RESPONSE:", res.data);
 
-      // store admin
+      if (!res.data.admin) {
+        alert("Invalid server response");
+        return;
+      }
+
       localStorage.setItem("admin", JSON.stringify(res.data.admin));
 
       alert("Login Successful");

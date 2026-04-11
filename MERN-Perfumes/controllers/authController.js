@@ -4,33 +4,31 @@ const jwt = require("jsonwebtoken");
 // ADMIN LOGIN
 exports.loginAdmin = async (req, res) => {
   try {
+    console.log("LOGIN REQUEST BODY:", req.body);
+
     const { username, password } = req.body;
 
-    // 🔥 FIX: only search by username first
     const admin = await Admin.findOne({ username });
+
+    console.log("FOUND ADMIN:", admin);
 
     if (!admin) {
       return res.status(400).json({ message: "Admin not found" });
     }
 
-    // 🔥 FIX: proper password check
+    console.log("PASSWORD CHECK:", password, admin.password);
+
     if (password !== admin.password) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign(
-      { id: admin._id },
-      "SECRET_KEY",
-      { expiresIn: "1h" }
-    );
-
     res.json({
       message: "Login successful",
       admin,
-      token,
     });
 
   } catch (err) {
+    console.log("LOGIN ERROR:", err);
     res.status(500).json({ message: err.message });
   }
 };

@@ -10,11 +10,12 @@ const List = () => {
   const navigate = useNavigate();
   const [perfumes, setPerfumes] = useState([]);
 
-  // GET DATA FROM BACKEND
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://mern-perfumes-production.up.railway.app/api/cards");
+        const res = await axios.get(
+          "https://mern-perfumes-production.up.railway.app/api/cards"
+        );
         setPerfumes(res.data);
       } catch (error) {
         console.log(error);
@@ -30,11 +31,13 @@ const List = () => {
 
       <div className="container">
         {perfumes.map((item) => (
-          <div className="card" key={item._id} onClick={() => navigate(`/desc/${item._id}`)}>
-            
-            {/* IMAGE FROM BACKEND */}
+          <div
+            className="card"
+            key={item._id}
+            onClick={() => navigate(`/desc/${item._id}`)}
+          >
             <img
-              src={`mern-perfumes-production.up.railway.app/uploads/${item.image}`}
+              src={`https://mern-perfumes-production.up.railway.app/uploads/${item.image}`}
               alt={item.name}
             />
 
