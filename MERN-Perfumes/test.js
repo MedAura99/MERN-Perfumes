@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const uri = process.env.MONGO_URL; // or paste string directly
+const uri = process.env.MONGOAUTH_URL; // or paste string directly
 
 mongoose.connect(uri, {
   serverSelectionTimeoutMS: 10000,

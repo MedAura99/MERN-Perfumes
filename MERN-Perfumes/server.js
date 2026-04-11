@@ -1,8 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
-const PORT = process.env.PORT || 5000;
+
+const connectDB = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
 const cardRoutes = require("./routes/cardRoutes");
@@ -16,11 +16,18 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/cards", cardRoutes);
 
-mongoose.connect(process.env.MONGO_URL, {
-  serverSelectionTimeoutMS: 30000, // 30 seconds
-  bufferTimeoutMS: 30000
-})
+const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// 🔥 ONLY START AFTER DB CONNECT
+connectDB()
+  .then(() => {
+    console.log("MongoDB Connected");
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("DB Connection Failed:", err);
+    process.exit(1);
+  });

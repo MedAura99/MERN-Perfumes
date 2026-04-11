@@ -2,16 +2,26 @@ const mongoose = require("mongoose");
 const Admin = require("./models/admin");
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGOAUTH_URL);
+const connectDB = async () => {
+  await mongoose.connect(process.env.MONGOAUTH_URL);
+  console.log("DB Connected");
+};
 
 const createAdmin = async () => {
+  try {
+    await connectDB();
+
     await Admin.create({
-        username: "admin",
-        password: "adminbba123"
+      username: "admin",
+      password: "adminbba123",
     });
 
     console.log("Admin created");
-    mongoose.disconnect();
+
+    await mongoose.disconnect();
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
 createAdmin();
